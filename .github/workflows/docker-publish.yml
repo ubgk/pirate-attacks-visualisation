@@ -39,7 +39,7 @@ jobs:
 
       # Lint the Dockerfile
       - name: Dockerfile Lint (Hadolint)
-        uses: hadolint/hadolint-action@v2.1.0
+        uses: jbergstroem/hadolint-gh-action@v1
         with:
           dockerfile: Dockerfile
 
