@@ -23,4 +23,4 @@ ENV MAPBOX_STYLE="mapbox://styles/bgokbakan/claguuczy000414qs1etg2nv5"
 ENV MAPBOX_TOKEN="<SECRET-TOKEN>"
 
 EXPOSE 8050
-CMD gunicorn --workers=1 --threads=4 --worker-class=gthread --bind 0.0.0.0:8050 app:server
+CMD ["gunicorn", "--workers=1", "--threads=4", "--worker-class=gthread", "--bind 0.0.0.0:8050", "app:server"]
