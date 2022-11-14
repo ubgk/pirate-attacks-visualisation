@@ -42,6 +42,7 @@ jobs:
         uses: jbergstroem/hadolint-gh-action@v1
         with:
           dockerfile: Dockerfile
+          error_level: 1 # Fail on WARNING or above (e.g., -1: never, 0: error, 1: warning, 2: info)
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
