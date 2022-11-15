@@ -119,8 +119,8 @@ jobs:
           step: finish
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
-          env: ${{ steps.deployment.outputs.env }}
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          env: ${{ steps.heroku-release.outputs.env }}
+          deployment_id: ${{ steps.heroku-release.outputs.deployment_id }}
           env_url: https://pirate-attacks-visualization.herokuapp.com/
           override: true
 
