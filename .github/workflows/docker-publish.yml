@@ -33,6 +33,7 @@ jobs:
       # This is used to complete the identity challenge
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
+      deployments: write
 
     steps:
       - name: Checkout repository
