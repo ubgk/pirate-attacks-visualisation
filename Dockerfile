@@ -21,6 +21,7 @@ COPY app.py app.py
 
 ENV MAPBOX_STYLE="mapbox://styles/bgokbakan/claguuczy000414qs1etg2nv5"
 ENV MAPBOX_TOKEN="<SECRET-TOKEN>"
+ENV PORT=8050
 
-EXPOSE 8050
-CMD ["gunicorn", "--workers=1", "--threads=4", "--worker-class=gthread", "--bind 0.0.0.0:8050", "app:server"]
+EXPOSE $PORT # 8050 by default
+CMD ["gunicorn", "--workers=1", "--threads=4", "--worker-class=gthread", "--bind 0.0.0.0:${PORT}", "app:server"]
