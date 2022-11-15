@@ -97,12 +97,12 @@ jobs:
 
       - name: List Images
         id: ls-docker
-        run: docker images
+        run: docker images ghcr.io/boragokbakan/pirate-attacks-visualisation
 
       - name: Tag and Push image to Heroku
         id: heroku-push
         run: |
-            docker tag ${{ steps.build-and-push.outputs.imageid }} registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
+            docker tag ghcr.io/boragokbakan/pirate-attacks-visualisation:main registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
             docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
         
       - name: Release the App on Heroku
