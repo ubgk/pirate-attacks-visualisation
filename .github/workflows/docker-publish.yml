@@ -97,7 +97,9 @@ jobs:
 
       - name: List Images
         id: ls-docker
-        run: docker images ghcr.io/boragokbakan/pirate-attacks-visualisation
+        run: |
+          docker pull ghcr.io/boragokbakan/pirate-attacks-visualisation:main
+          docker images ghcr.io/boragokbakan/pirate-attacks-visualisation
 
       - name: Tag and Push image to Heroku
         id: heroku-push
