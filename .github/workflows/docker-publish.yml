@@ -70,6 +70,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Login to Heroku CLI
+        if: github.event_name != 'pull_request'
+        id: heroku-login
+        run: heroku container:login
+
+
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
@@ -77,6 +83,11 @@ jobs:
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: DEBUG
+        id: ls-dockerdebug
+        run: |
+          echo ${{ steps.meta.outputs.tags }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
@@ -86,14 +97,13 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
+
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      - name: Login to Heroku CLI
-        id: heroku-login
-        run: heroku container:login
 
       - name: List Images
         id: ls-docker
@@ -101,15 +111,14 @@ jobs:
           docker pull ghcr.io/boragokbakan/pirate-attacks-visualisation:main
           docker images ghcr.io/boragokbakan/pirate-attacks-visualisation
 
-      - name: Tag and Push image to Heroku
-        id: heroku-push
-        run: |
-            docker tag ghcr.io/boragokbakan/pirate-attacks-visualisation:main registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
-            docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
+#      - name: Tag and Push image to Heroku
+#        id: heroku-push
+#        run: |
+#            docker push registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
         
       - name: Release the App on Heroku
         id: heroku-release
-        run: heroku container:release web
+        run: heroku container:release web -a ${{ env.HEROKU_APP_NAME }}
 
 
 #      - name: Build, Push and Release a Docker container to Heroku.
