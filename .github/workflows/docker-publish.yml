@@ -20,9 +20,6 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-  HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-  HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
 
 jobs:
@@ -84,10 +81,6 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: DEBUG
-        id: ls-dockerdebug
-        run: |
-          echo ${{ steps.meta.outputs.tags }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
@@ -99,50 +92,15 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ${{ steps.meta.outputs.tags }}
-            registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
+            registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
 
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      - name: List Images
-        id: ls-docker
-        run: |
-          docker pull ghcr.io/boragokbakan/pirate-attacks-visualisation:main
-          docker images ghcr.io/boragokbakan/pirate-attacks-visualisation
-
-#      - name: Tag and Push image to Heroku
-#        id: heroku-push
-#        run: |
-#            docker push registry.heroku.com/${{ env.HEROKU_APP_NAME }}/web
         
       - name: Release the App on Heroku
-        id: heroku-release
-        run: heroku container:release web -a ${{ env.HEROKU_APP_NAME }}
-
-
-#      - name: Build, Push and Release a Docker container to Heroku.
-#        uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
-#        with:
-#          # Below you must provide variables for your Heroku app.
-#
-#          # The email address associated with your Heroku account.
-#          # If you don't want to use repository secrets (which is recommended) you can do:
-#          # email: my.email@example.com
-#          email: ${{ secrets.HEROKU_EMAIL }}
-#
-#          # Heroku API key associated with provided user's email.
-#          # Api Key is available under your Heroku account settings.
-#          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-#
-#          # Name of the heroku application to which the build is to be sent.
-#          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-#
-#          # (Optional, default: "web")
-#          # Select the process type for which you want the docker container to be uploaded.
-#          # By default, this argument is set to "web".
-#          # For more information look at https://devcenter.heroku.com/articles/process-model
-#          process_type: web
+        if: github.event_name != 'pull_request'
+        run: heroku container:release web -a ${{ secrets.HEROKU_APP_NAME }}
         
 
       # Sign the resulting Docker image digest except on PRs.
