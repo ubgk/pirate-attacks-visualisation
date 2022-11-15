@@ -20,6 +20,9 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+  HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
 
 jobs:
@@ -87,7 +90,22 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          
+
+      - name: Login to Heroku CLI
+        id: heroku-login
+        run: heroku container:login
+
+      - name: Tag and Push image to Heroku
+        id: heroku-push
+        run: |
+            docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
+            docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
+        
+      - name: Release the App on Heroku
+        id: heroku-release
+        run: heroku container:release web
+
+
 #      - name: Build, Push and Release a Docker container to Heroku.
 #        uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
 #        with:
