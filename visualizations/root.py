@@ -12,7 +12,7 @@ pirate_attacks = pd.read_csv("data/pirate_attacks.csv")
 fig = px.scatter_mapbox(pirate_attacks, lat="latitude", lon="longitude",
                         hover_name="nearest_country",
                         hover_data=["vessel_name", "attack_description"],
-                        color_discrete_sequence=["yellow"],
+                        color_discrete_sequence=["red"],
                         zoom=2, height=920)
 
 fig.update_layout(mapbox_style=os.environ['MAPBOX_STYLE'],
