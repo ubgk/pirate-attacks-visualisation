@@ -95,6 +95,10 @@ jobs:
         id: heroku-login
         run: heroku container:login
 
+      - name: List Images
+        id: ls-docker
+        run: docker images
+
       - name: Tag and Push image to Heroku
         id: heroku-push
         run: |
