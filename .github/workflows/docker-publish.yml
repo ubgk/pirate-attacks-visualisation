@@ -20,11 +20,12 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+  HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
