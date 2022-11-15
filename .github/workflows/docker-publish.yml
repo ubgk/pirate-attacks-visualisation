@@ -98,7 +98,7 @@ jobs:
       - name: Tag and Push image to Heroku
         id: heroku-push
         run: |
-            docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.labels.org.opencontainers.image.version }} registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
+            docker tag {{ steps.build-and-push.outputs.imageid }} registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
             docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
         
       - name: Release the App on Heroku
