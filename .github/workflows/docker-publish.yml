@@ -121,7 +121,7 @@ jobs:
           status: ${{ job.status }}
           env: ${{ steps.deployment.outputs.env }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-          env_url: https://${{ secrets.APP_NAME }}.herokuapp.com/
+          env_url: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/
           override: true
 
 
