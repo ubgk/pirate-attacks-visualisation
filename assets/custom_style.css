@@ -20,7 +20,7 @@ p{
 
 /* Container to hold visualizations */
 /* Container to hold visualizations */
-.parentcontainer{
+container{
     background-color: #404c79;
     width: 95%;
     height: auto;
@@ -32,11 +32,10 @@ p{
 map-cell{
     width: 100px;
     border: solid lime;
-    display: inline-block;
-
 }
 
 plot-cell{
-    display: inline-block;
     font-weight: bold;
+    border: solid lime;
+    background-color: white;
 }
