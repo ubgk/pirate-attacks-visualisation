@@ -7,6 +7,10 @@ import visualizations.geo as geo
 from utils import data
 
 layout = html.Div(children=[
-                geo.create_map(data=data.pirate_attacks)
+                html.Div(id='header-div',
+                         children=[html.Header('Global Maritime Pirate Attacks')]
+                         ),
+                html.Div(children=[geo.create_map(data=data.pirate_attacks)], id='viz-div'),
+
             ]
         )
