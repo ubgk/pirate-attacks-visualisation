@@ -16,6 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY assets assets
 COPY data data
 COPY visualizations visualizations
+COPY utils utils
 
 COPY app.py app.py
 
