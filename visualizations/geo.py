@@ -16,8 +16,7 @@ def create_map(data: pd.DataFrame, id: str = 'pirate-map') -> dcc.Graph:
                             hover_name="nearest_country",
                             hover_data=["vessel_name", "attack_description"],
                             color_discrete_sequence=["yellow"],
-                            size_max=0.1,
-                            zoom=2, height=920)
+                            zoom=2)
 
     fig.update_layout(mapbox_style=os.environ['MAPBOX_STYLE'],
                       mapbox_accesstoken=os.environ['MAPBOX_TOKEN'])

@@ -1,0 +1,42 @@
+body{
+    background-color: #121B3A; /* Fully opaque */
+    color: white; /* All text is white by default, unless overridden! */
+    font-family: Helvetica, sans-serif; /* All text is Helvetica sans-serif for now... */
+
+}
+
+/* Header Style */
+header{
+    font-size: 40px;
+    font-weight: bold;
+    margin: 20px 20px 5px 20px; /* Top Right Bottom Left */
+}
+
+/* Paragraph Style */
+p{
+   margin-left: 20px;
+   margin-bottom: 20px;
+}
+
+/* Container to hold visualizations */
+/* Container to hold visualizations */
+.parentcontainer{
+    background-color: #404c79;
+    width: 95%;
+    height: auto;
+    padding: 1em;
+    border: dashed red;
+    margin: 10px;
+}
+
+map-cell{
+    width: 100px;
+    border: solid lime;
+    display: inline-block;
+
+}
+
+plot-cell{
+    display: inline-block;
+    font-weight: bold;
+}
