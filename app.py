@@ -2,9 +2,10 @@ import dash
 from dash import Output, Input
 
 import utils.data
+import visualizations.geo
+import visualizations.hist
 import visualizations.root
-from utils.data import pirate_attacks, filter_range
-from visualizations.geo import create_map
+from utils.data import pirate_attacks
 
 external_stylesheets = [
     'https://codepen.io/chriddyp/pen/bWLwgP.css',
@@ -19,21 +20,17 @@ server = app.server
 
 
 @app.callback(Output(component_id='map-graph', component_property='figure'),
+              Output(component_id='hist', component_property='figure'),
               Input(component_id='range-slider', component_property='value'))
 def update_visualization(slider):
     data = pirate_attacks.copy()
 
     if slider:
-        print(slider)
         data = utils.data.filter_range(slider, data)
-        # import pdb; pdb.set_trace()
+        visualizations.geo.update_map(visualizations.geo.map, data)
+        visualizations.hist.update_hist(visualizations.hist.hist_fig, data)
 
-    else:
-        slider = [0, 1995]
-        data = utils.data.filter_range(slider, data)
-
-
-    return create_map(data)
+    return visualizations.geo.map, visualizations.hist.hist_fig
 
 
 if __name__ == '__main__':

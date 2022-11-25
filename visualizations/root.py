@@ -4,6 +4,7 @@
 from dash import html, dcc
 
 import visualizations.geo as geo
+import visualizations.hist
 from utils import components
 from utils import data
 
@@ -16,13 +17,16 @@ layout = html.Div(id='layout-div',
                                    html.Div(id='map-cell',
                                             className='fixed-cell',
                                             children=[
-                                                dcc.Graph(id='map-graph'),
+                                                html.Div(id='graph-div',
+                                                         children=[dcc.Graph(id='map-graph')]),
                                                 components.get_slider_div()
                                             ]),
 
                                    html.Div(id='plot-cell',
                                             className='flex-cell',
-                                            children=["PLOTS HERE!"]),
+                                            children=[html.Div(id='plot-div',
+                                                               children=[dcc.Graph(id='hist')])
+                                                      ]),
 
                                ]),
 
