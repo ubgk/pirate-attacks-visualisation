@@ -10,9 +10,7 @@ def filter_range(range,
     data_mask = np.ones(df.shape[0], dtype=bool)
 
     if range:
-        print('filtering data')
         data_mask = data_mask & (df.date_year >= range[0])
         data_mask = data_mask & (df.date_year <= range[1])
-        print(data_mask.sum())
 
     return pirate_attacks[data_mask].copy()

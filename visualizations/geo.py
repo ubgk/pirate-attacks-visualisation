@@ -40,5 +40,4 @@ def update_map(fig: go.Figure, data: pd.DataFrame):
     fig['layout']['uirevision'] = 'userpref'
 
 
-
 map = create_map(utils.data.pirate_attacks)
