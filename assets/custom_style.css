@@ -1,8 +1,18 @@
+:root {
+    --primary:#121B3A;
+    --secondary:#1D2D68;
+    --third:#007eff;
+    --fourth:#ebf5ff;
+}
 body{
-    background-color: #121B3A; /* Fully opaque */
-    color: white; /* All text is white by default, unless overridden! */
-    font-family: Helvetica, sans-serif; /* All text is Helvetica sans-serif for now... */
+    background-color: var(--primary); /* Fully opaque */
+    color: var(--third); /* All text is white by default, unless overridden! */
+    font-family: Courier New, sans-serif; /* All text is Helvetica sans-serif for now... */
+}
 
+text{
+    color: var(--third); /* All text is white by default, unless overridden! */
+    font-family: Courier New, sans-serif; /* All text is Helvetica sans-serif for now... */
 }
 
 /* Header Style */
@@ -36,17 +46,25 @@ p{
     /*border: solid lime;*/
 }
 
-.right{
+.right.column{
     margin-left: 20px;
     flex-grow: 1;
     font-weight: bold;
     /*border: solid yellow;*/
-    background-color: white;
+    /* background-color: white;*/
 }
 .cell {
-    background-color: #404c79;
-    border-radius: 10px;
+    background-color: var(--secondary); /* Land color */
+    /*border-radius: 10px;*/
 }
+
+#selector-div{
+    margin-bottom: 20px;
+    padding: 5px;
+    width: 300px;
+    background:
+}
+
 /* Disable trace name */
 g.hoverlayer text.name {
     display: none;
@@ -55,4 +73,12 @@ g.hoverlayer text.name {
 /* Disable trace name box */
 g.hoverlayer rect {
     display: none;
+}
+
+.Select-control {
+  background-color: var(--primary) !important;
+}
+
+.Select-menu-outer {
+  background-color: var(--primary);
 }

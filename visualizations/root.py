@@ -22,9 +22,12 @@ layout = html.Div(id='layout-div',
                                                 components.get_slider_div()
                                             ]),
 
-                                   html.Div(id='plot-cell',
-                                            className='right cell',
-                                            children=[html.Div(id='plot-div',
+                                   html.Div(id='right-column',
+                                            className='right column',
+                                            children=[
+                                                        components.get_selector_div(),
+                                                        html.Div(id='plot-cell',
+                                                               className='right cell',
                                                                children=[dcc.Graph(id='hist')])
                                                       ]),
 

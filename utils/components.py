@@ -1,5 +1,24 @@
 from dash import html, dcc
 
+from utils.data import pirate_attacks
+
+
+def get_selector_div(id: str = 'selector-div', className: str = 'right cell'):
+    attack_types = pirate_attacks.attack_type.unique()
+    attack_types = [at for at in attack_types if type(at) is str]
+
+    vessel_types = pirate_attacks.vessel_type.unique()
+    vessel_status = pirate_attacks.vessel_status.unique()
+
+    div = html.Div(id=id,
+                   className=className,
+                   children=["Attack Types: ",
+                             dcc.Dropdown(id='attack_type_selector', options=attack_types, multi=True,
+                                          style={'background-color': 'var(--primary)'})]
+                   )
+
+    return div
+
 
 def get_header_div(id: str = 'header-div', className: str = 'row cell'):
     div = html.Div(id=id,
