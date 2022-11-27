@@ -43,12 +43,13 @@ p{
 }
 .left{
     width: 60%;
-    /*border: solid lime;*/
+    //border: solid lime;
 }
 
 .right.column{
     margin-left: 20px;
-    flex-grow: 1;
+    width: 30%
+    max-width: 30%;
     font-weight: bold;
     /*border: solid yellow;*/
     /* background-color: white;*/
@@ -61,7 +62,6 @@ p{
 #selector-div{
     margin-bottom: 20px;
     padding: 5px;
-    width: 300px;
     background:
 }
 

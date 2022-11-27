@@ -19,7 +19,7 @@ def create_hist(data: pd.DataFrame, col: str = 'vessel_status') -> go.Figure:
     fig.add_trace(hist_trace)
 
     fig['layout']['uirevision'] = 'userpref'
-    fig.update_layout(margin={"t": 0,})
+    fig.update_layout(margin={"t": 0,}, paper_bgcolor="rgba(0,0,0,0)")
     fig['layout']['uirevision'] = 'userpref'
 
     return fig
