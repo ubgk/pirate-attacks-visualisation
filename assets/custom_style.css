@@ -88,4 +88,6 @@ g.hoverlayer rect {
 }
 g.xtick text, g.ytick text {
     fill: var(--fourth) !important;
+    font-family: Courier New !important;
+
 }
