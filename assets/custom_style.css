@@ -3,6 +3,7 @@
     --secondary:#1D2D68;
     --third:#007eff;
     --fourth:#ebf5ff;
+    --fifth: #96dbfa; /* light default slider blue */
 }
 body{
     background-color: var(--primary); /* Fully opaque */
@@ -81,4 +82,10 @@ g.hoverlayer rect {
 
 .Select-menu-outer {
   background-color: var(--primary);
+}
+.rc-slider-mark-text-active{
+    color:var(--fourth);
+}
+g.xtick text, g.ytick text {
+    fill: var(--fourth) !important;
 }
