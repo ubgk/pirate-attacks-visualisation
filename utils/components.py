@@ -7,7 +7,7 @@ def get_header_div(id: str = 'header-div', className: str = 'row cell'):
                    children=[html.Header('Global Maritime Pirate Attacks'),
                              html.P(
                                  'This is an interactive visualisation of Global Maritime Pirate Attacks'
-                                 ' between 1000 and 1500 BC.')]
+                                 ' between 1993 and 2020')]
                    )
 
     return div
