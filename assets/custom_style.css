@@ -84,10 +84,10 @@ g.hoverlayer rect {
   background-color: var(--primary);
 }
 .rc-slider-mark-text-active{
-    color:var(--fourth);
+    color:var(--third);
 }
 g.xtick text, g.ytick text {
-    fill: var(--fourth) !important;
+    fill: var(--third) !important;
     font-family: Courier New !important;
 
 }
