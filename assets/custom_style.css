@@ -20,7 +20,7 @@ p{
 
 /* Container to hold visualizations */
 /* Container to hold visualizations */
-container{
+.row{
     background-color: #404c79;
     width: 95%;
     height: auto;
@@ -29,7 +29,7 @@ container{
     margin: 10px;
 }
 
-map-cell{
+map-graph{
     width: 100px;
     border: solid lime;
 }

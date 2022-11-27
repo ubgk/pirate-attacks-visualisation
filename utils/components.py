@@ -1,7 +1,7 @@
 from dash import html, dcc
 
 
-def get_header_div(id: str = 'header-div', className: str = 'containerv2'):
+def get_header_div(id: str = 'header-div', className: str = 'row'):
     div = html.Div(id=id,
                    className=className,
                    children=[html.Header('Global Maritime Pirate Attacks'),
