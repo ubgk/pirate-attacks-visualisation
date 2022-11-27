@@ -13,7 +13,7 @@ def get_selector_div(id: str = 'selector-div', className: str = 'right cell'):
     div = html.Div(id=id,
                    className=className,
                    children=["Attack Types",
-                             dcc.Dropdown(id='attack_type_selector', options=attack_types, value=attack_types,
+                             dcc.Dropdown(id='attack-type-dropdown', options=attack_types, value=attack_types,
                                           multi=True, style={'background-color': 'var(--primary)'})]
                    )
 

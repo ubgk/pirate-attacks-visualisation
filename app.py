@@ -21,12 +21,14 @@ server = app.server
 
 @app.callback(Output(component_id='map-graph', component_property='figure'),
               Output(component_id='hist', component_property='figure'),
-              Input(component_id='range-slider', component_property='value'))
-def update_visualization(slider):
+              Input(component_id='range-slider', component_property='value'),
+              Input(component_id='attack-type-dropdown', component_property='value'),)
+def update_visualization(slider, attack_types):
+    print(attack_types)
     data = pirate_attacks.copy()
 
-    if slider:
-        data = utils.data.filter_range(slider, data)
+    if slider or attack_types:
+        data = utils.data.filter_data(range=slider, attack_types=attack_types, df=data)
         visualizations.geo.update_map(visualizations.geo.map, data)
         visualizations.hist.update_hist(visualizations.hist.hist_fig, data)
 
