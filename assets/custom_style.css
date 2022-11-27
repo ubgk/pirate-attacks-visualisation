@@ -48,6 +48,11 @@ p{
     border-radius: 10px;
 }
 /* Disable trace name */
-text.name {
+g.hoverlayer text.name {
+    display: none;
+}
+
+/* Disable trace name box */
+g.hoverlayer rect {
     display: none;
 }
