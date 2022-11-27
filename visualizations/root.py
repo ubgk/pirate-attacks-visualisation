@@ -12,18 +12,18 @@ layout = html.Div(id='layout-div',
                   children=[
                       components.get_header_div(),
                       html.Div(id='viz-div',
-                               className='row',
+                               className='row flexible',
                                children=[
                                    html.Div(id='map-cell',
-                                            className='left-column',
+                                            className='left cell',
                                             children=[
                                                 html.Div(id='graph-div',
                                                          children=[dcc.Graph(id='map-graph')]),
                                                 components.get_slider_div()
                                             ]),
 
-                                   html.Div(id='right-column',
-                                            className='columns',
+                                   html.Div(id='plot-cell',
+                                            className='right cell',
                                             children=[html.Div(id='plot-div',
                                                                children=[dcc.Graph(id='hist')])
                                                       ]),

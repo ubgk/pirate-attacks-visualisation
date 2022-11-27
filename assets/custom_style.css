@@ -21,21 +21,33 @@ p{
 /* Container to hold visualizations */
 /* Container to hold visualizations */
 .row{
-    background-color: #404c79;
     width: 95%;
     height: auto;
-    padding: 1em;
-    border: dashed red;
+    /*border: dashed red;*/
     margin: 10px;
 }
 
-map-graph{
-    width: 100px;
-    border: solid lime;
+.flexible {
+    display: flex;
+    flex: 1;
+}
+.left{
+    width: 60%;
+    /*border: solid lime;*/
 }
 
-plot-cell{
+.right{
+    margin-left: 20px;
+    flex-grow: 1;
     font-weight: bold;
-    border: solid lime;
+    /*border: solid yellow;*/
     background-color: white;
+}
+.cell {
+    background-color: #404c79;
+    border-radius: 10px;
+}
+/* Disable trace name */
+text.name {
+    display: none;
 }

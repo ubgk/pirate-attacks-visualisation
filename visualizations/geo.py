@@ -31,6 +31,7 @@ def create_map(data: pd.DataFrame) -> go.Figure:
 
 def update_map(fig: go.Figure, data: pd.DataFrame):
     fig.data[-1].visible = False
+    fig.update_layout(showlegend=False)
     # print(f"Number of traces: {len(fig.data)}")
 
     scatter_trace = go.Scattermapbox(lat=data["latitude"],
@@ -38,6 +39,8 @@ def update_map(fig: go.Figure, data: pd.DataFrame):
 
     fig.add_trace(scatter_trace)
     fig['layout']['uirevision'] = 'userpref'
+
+    fig.data[0].showlegend = False
 
 
 map = create_map(utils.data.pirate_attacks)
