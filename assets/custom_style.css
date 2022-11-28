@@ -24,9 +24,12 @@ header{
 }
 
 /* Paragraph Style */
-p{
+p {
    margin-left: 20px;
    margin-bottom: 20px;
+}
+h5 {
+   padding: 20px;
 }
 
 /* Container to hold visualizations */
@@ -52,7 +55,7 @@ p{
     width: 30%
     max-width: 30%;
     font-weight: bold;
-    /*border: solid yellow;*/
+    /* border: solid yellow;*/
     /* background-color: white;*/
 }
 .cell {

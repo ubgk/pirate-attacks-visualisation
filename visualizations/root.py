@@ -28,7 +28,8 @@ layout = html.Div(id='layout-div',
                                                         components.get_selector_div(),
                                                         html.Div(id='plot-cell',
                                                                className='right cell',
-                                                               children=[dcc.Graph(id='hist')])
+                                                               children=[html.H5("Vessel Status"),
+                                                                         dcc.Graph(id='hist')])
                                                       ]),
 
                                ]),
