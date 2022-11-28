@@ -91,3 +91,11 @@ g.xtick text, g.ytick text {
     font-family: Courier New !important;
 
 }
+.main-svg g.bglayer rect {
+    fill: var(--secondary) !important;
+    //fill-opacity: 0 !important;
+}
+
+g.barlayer.mlayer g.trace.bars g.point path {
+    fill: var(--third) !important;
+}
