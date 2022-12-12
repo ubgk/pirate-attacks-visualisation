@@ -3,10 +3,7 @@
 
 from dash import html, dcc
 
-import visualizations.geo as geo
-import visualizations.hist
 from utils import components
-from utils import data
 
 layout = html.Div(id='layout-div',
                   children=[
@@ -25,12 +22,13 @@ layout = html.Div(id='layout-div',
                                    html.Div(id='right-column',
                                             className='right column',
                                             children=[
-                                                        components.get_selector_div(),
-                                                        html.Div(id='plot-cell',
-                                                               className='right cell',
-                                                               children=[html.H5("Vessel Status"),
-                                                                         dcc.Graph(id='hist')])
-                                                      ]),
+                                                components.get_dropdown_div(),
+                                                components.get_selector_div(),
+                                                html.Div(id='plot-cell',
+                                                         className='right cell',
+                                                         children=[html.H5(children='Vessel Status', id='plot-name'),
+                                                                   dcc.Graph(id='hist')])
+                                            ]),
 
                                ]),
 

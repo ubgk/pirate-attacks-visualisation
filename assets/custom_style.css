@@ -63,7 +63,7 @@ h5 {
     /*border-radius: 10px;*/
 }
 
-#selector-div{
+#dropdown-div, #selector-div{
     margin-bottom: 20px;
     padding: 5px;
     background:

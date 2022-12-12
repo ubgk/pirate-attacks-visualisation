@@ -21,8 +21,9 @@ server = app.server
 
 @app.callback(Output(component_id='map-graph', component_property='figure'),
               Output(component_id='hist', component_property='figure'),
+              Output(component_id='plot-name', component_property='children'),
               Input(component_id='range-slider', component_property='value'),
-              Input(component_id='attack-type-dropdown', component_property='value'),)
+              Input(component_id='attack-type-dropdown', component_property='value'), )
 def update_visualization(slider, attack_types):
     data = pirate_attacks.copy()
 
@@ -31,7 +32,7 @@ def update_visualization(slider, attack_types):
         visualizations.geo.update_map(visualizations.geo.map, data)
         bar = visualizations.hist.create_bar(data)
 
-    return visualizations.geo.map, bar
+    return visualizations.geo.map, bar, "HEADER"
 
 
 if __name__ == '__main__':

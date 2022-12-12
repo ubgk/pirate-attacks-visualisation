@@ -1,6 +1,31 @@
+import string
+
 from dash import html, dcc
 
 from utils.data import pirate_attacks, c_map
+
+
+def get_dropdown_div(id: str = 'dropdown-div', className: str = 'right cell'):
+    # 'date', 'time', 'longitude', 'latitude', 'attack_type',
+    #        'location_description', 'nearest_country', 'eez_country',
+    #        'shore_distance', 'shore_longitude', 'shore_latitude',
+    #        'attack_description', 'vessel_name', 'vessel_type', 'vessel_status',
+    #        'data_source'
+
+    plot_types = ['attack_type', 'nearest_country', 'eez_country',
+                  'vessel_type', 'vessel_status', 'data_source']
+
+    entries = [{"label": string.capwords(pt.replace('_', ' ')),
+                "value": pt} for pt in plot_types]
+
+    div = html.Div(id=id,
+                   className=className,
+                   children=["Plot Type",
+                             dcc.Dropdown(id='plot-type-dropdown', options=entries, value='attack_type',
+                                          multi=False, style={'background-color': 'var(--primary)'})]
+                   )
+
+    return div
 
 
 def get_selector_div(id: str = 'selector-div', className: str = 'right cell'):
