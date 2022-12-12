@@ -1,10 +1,12 @@
+import collections
+
 import pandas as pd
 import plotly.graph_objects as go
-import plotly
+
 import utils.data
 
 
-def create_hist(data: pd.DataFrame, col: str = 'vessel_status') -> go.Figure:
+def create_bar(data: pd.DataFrame, col: str = 'attack_type') -> go.Figure:
     """
     Function that creates a GeoViz given a DataFrame
     :param data: A Pandas DataFrame that represents the data to visualize!
@@ -14,7 +16,12 @@ def create_hist(data: pd.DataFrame, col: str = 'vessel_status') -> go.Figure:
 
     fig = go.Figure()
 
-    hist_trace = go.Histogram(x=data[col], marker={'color': plotly.colors.qualitative.Light24})
+    dist = collections.Counter(data[col])
+    dist = sorted(dist.items(), key=lambda x: x[1], reverse=True)
+    x = [x for x, y in dist]
+    y = [y for x, y in dist]
+    colors = [utils.data.c_map[label] for label in x]
+    hist_trace = go.Bar(x=x, y=y,  marker={'color': colors})
 
     fig.add_trace(hist_trace)
 
@@ -24,8 +31,7 @@ def create_hist(data: pd.DataFrame, col: str = 'vessel_status') -> go.Figure:
 
     return fig
 
-
-# def update_hist(fig: go.Figure, data: pd.DataFrame):
+# def update_bar(fig: go.Figure, data: pd.DataFrame):
 #     fig.data[-1].visible = False
 #
 #     hist_trace = go.Histogram(x=data['vessel_status'])
@@ -35,4 +41,4 @@ def create_hist(data: pd.DataFrame, col: str = 'vessel_status') -> go.Figure:
 #     fig['layout']['uirevision'] = 'userpref'
 #
 #
-# hist_fig = create_hist(utils.data.pirate_attacks)
+# bar_fig = create_bar(utils.data.pirate_attacks)

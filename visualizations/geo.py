@@ -35,7 +35,8 @@ def update_map(fig: go.Figure, data: pd.DataFrame):
     # print(f"Number of traces: {len(fig.data)}")
 
     scatter_trace = go.Scattermapbox(lat=data["latitude"],
-                                     lon=data["longitude"])
+                                     lon=data["longitude"],
+                                     marker={'color': data['color']})
 
     fig.add_trace(scatter_trace)
     fig['layout']['uirevision'] = 'userpref'

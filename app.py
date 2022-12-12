@@ -24,15 +24,14 @@ server = app.server
               Input(component_id='range-slider', component_property='value'),
               Input(component_id='attack-type-dropdown', component_property='value'),)
 def update_visualization(slider, attack_types):
-    print(attack_types)
     data = pirate_attacks.copy()
 
     if slider or attack_types:
         data = utils.data.filter_data(range=slider, attack_types=attack_types, df=data)
         visualizations.geo.update_map(visualizations.geo.map, data)
-        hist = visualizations.hist.create_hist(data)
+        bar = visualizations.hist.create_bar(data)
 
-    return visualizations.geo.map, hist
+    return visualizations.geo.map, bar
 
 
 if __name__ == '__main__':
