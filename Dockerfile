@@ -20,8 +20,8 @@ COPY utils utils
 
 COPY app.py app.py
 
-ENV MAPBOX_STYLE="mapbox://styles/paolaos/clbkzimcc002y14lkv0e29b9y"
-ENV MAPBOX_TOKEN="pk.eyJ1IjoicGFvbGFvcyIsImEiOiJjbGJremQxa2swMnZjM29tdjhxMHpmbnVnIn0.SPBize1vnl4Zd047-aj5sQ"
+ENV MAPBOX_STYLE="mapbox://styles/bgokbakan/claguuczy000414qs1etg2nv5"
+ENV MAPBOX_TOKEN="<SECRET-TOKEN>"
 
 # Variable port for Heroku
 ENV PORT=8000
