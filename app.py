@@ -30,9 +30,9 @@ def update_visualization(slider, attack_types):
     if slider or attack_types:
         data = utils.data.filter_data(range=slider, attack_types=attack_types, df=data)
         visualizations.geo.update_map(visualizations.geo.map, data)
-        visualizations.hist.update_hist(visualizations.hist.hist_fig, data)
+        hist = visualizations.hist.create_hist(data)
 
-    return visualizations.geo.map, visualizations.hist.hist_fig
+    return visualizations.geo.map, hist
 
 
 if __name__ == '__main__':
