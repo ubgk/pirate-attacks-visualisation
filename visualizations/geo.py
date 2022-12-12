@@ -33,9 +33,8 @@ def update_map(fig: go.Figure, data: pd.DataFrame):
     fig.data[-1].visible = False
     fig.update_layout(showlegend=False)
     # print(f"Number of traces: {len(fig.data)}")
-
     scatter_trace = go.Scattermapbox(lat=data["latitude"],
-                                     lon=data["longitude"])
+                                     lon=data["longitude"], hovertext=data["vessel_name"])
 
     fig.add_trace(scatter_trace)
     fig['layout']['uirevision'] = 'userpref'
