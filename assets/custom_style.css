@@ -100,5 +100,5 @@ g.xtick text, g.ytick text {
 }
 
 g.barlayer.mlayer g.trace.bars g.point path {
-    fill: var(--third) !important;
+    fill: var(--third);
 }

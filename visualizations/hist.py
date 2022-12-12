@@ -1,6 +1,6 @@
 import pandas as pd
 import plotly.graph_objects as go
-
+import plotly
 import utils.data
 
 
@@ -14,7 +14,7 @@ def create_hist(data: pd.DataFrame, col: str = 'vessel_status') -> go.Figure:
 
     fig = go.Figure()
 
-    hist_trace = go.Histogram(x=data[col])
+    hist_trace = go.Histogram(x=data[col], marker={'color': plotly.colors.qualitative.Light24})
 
     fig.add_trace(hist_trace)
 
