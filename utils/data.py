@@ -1,13 +1,12 @@
 import numpy as np
 import pandas as pd
-import plotly
 
-from utils.colors import map_colors
+from utils.colors import map_colors, COLOR_LIST
 
 pirate_attacks = pd.read_csv("data/pirate_attacks.csv")
 pirate_attacks['date_year'] = pirate_attacks.date.apply(lambda x: int(x.split('-')[0]))
 
-c_map = map_colors(pirate_attacks.attack_type.unique(), plotly.colors.qualitative.Light24)
+c_map = map_colors(pirate_attacks.attack_type.unique(), COLOR_LIST)
 pirate_attacks['color'] = pirate_attacks.attack_type.apply(str).map(c_map)
 
 

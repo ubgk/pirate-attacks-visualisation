@@ -1,19 +1,24 @@
 from dash import html, dcc
 
-from utils.data import pirate_attacks
+from utils.data import pirate_attacks, c_map
 
 
 def get_selector_div(id: str = 'selector-div', className: str = 'right cell'):
     attack_types = pirate_attacks.attack_type.unique()
     attack_types = [at for at in attack_types if type(at) is str]
 
-    vessel_types = pirate_attacks.vessel_type.unique()
-    vessel_status = pirate_attacks.vessel_status.unique()
+    # vessel_types = pirate_attacks.vessel_type.unique()
+    # vessel_status = pirate_attacks.vessel_status.unique()
+
+    entries = [{"label": html.Span(id=f'{at}_selector_span',
+                                   children=at,
+                                   style={'color': c_map[at]}),
+                "value": at} for at in attack_types]
 
     div = html.Div(id=id,
                    className=className,
                    children=["Attack Types",
-                             dcc.Dropdown(id='attack-type-dropdown', options=attack_types, value=attack_types,
+                             dcc.Dropdown(id='attack-type-dropdown', options=entries, value=attack_types,
                                           multi=True, style={'background-color': 'var(--primary)'})]
                    )
 
