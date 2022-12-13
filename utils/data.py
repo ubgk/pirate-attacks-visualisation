@@ -2,12 +2,20 @@ import string
 
 import numpy as np
 import pandas as pd
+from global_land_mask import globe
 
 from utils.colors import map_colors, COLOR_LIST
 
 pirate_attacks = pd.read_csv("data/pirate_attacks.csv")
+
+# Filter points on land
+pirate_attacks["is_ocean"] = pirate_attacks.apply(lambda row: globe.is_ocean(row.latitude, row.longitude), axis=1)
+pirate_attacks = pirate_attacks[pirate_attacks["is_ocean"]]
+
+# Year
 pirate_attacks['date_year'] = pirate_attacks.date.apply(lambda x: int(x.split('-')[0]))
 
+# Map attack types to colors
 c_map = map_colors(pirate_attacks.attack_type.unique(), COLOR_LIST)
 pirate_attacks['color'] = pirate_attacks.attack_type.apply(str).map(c_map)
 
