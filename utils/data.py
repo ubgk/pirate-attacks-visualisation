@@ -19,8 +19,13 @@ pirate_attacks['date_year'] = pirate_attacks.date.apply(lambda x: int(x.split('-
 c_map = map_colors(pirate_attacks.attack_type.unique(), COLOR_LIST)
 pirate_attacks['color'] = pirate_attacks.attack_type.apply(str).map(c_map)
 
-# Attack Type "Boarded" == "Boarding"
-pirate_attacks['attack_type'] = pirate_attacks['attack_type'].apply(lambda at: 'Boarded' if at == 'Boarding' else str(at))
+# Attack Type "Boarding" -> "Boarded"
+pirate_attacks['attack_type'] = pirate_attacks['attack_type'].apply(
+    lambda at: 'Boarded' if at == 'Boarding' else str(at))
+
+# Vessel Status "steaming" -> "Steaming"
+pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
+    lambda vs: 'Steaming' if vs == 'steaming' else str(vs))
 
 
 def format_colname(plot_type):
