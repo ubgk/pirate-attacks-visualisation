@@ -35,7 +35,7 @@ def update_visualization(slider, attack_types, plot_type):
         visualizations.geo.update_map(visualizations.geo.map, data)
         bar = visualizations.hist.create_bar(data, col=plot_type)
 
-        plot_type = string.capwords(plot_type.replace("_", " "))
+        plot_type = string.capwords(plot_type.replace("_", " ")).replace('Eez', 'EEZ')
 
     return visualizations.geo.map, bar, plot_type
 
