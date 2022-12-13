@@ -65,7 +65,7 @@ h5 {
 
 #dropdown-div, #selector-div{
     margin-bottom: 20px;
-    padding: 5px;
+    padding: 10px;
     background:
 }
 
@@ -101,4 +101,8 @@ g.xtick text, g.ytick text {
 
 g.barlayer.mlayer g.trace.bars g.point path {
     fill: var(--third);
+}
+
+.Select-value-label {
+    color: var(--third) !important;
 }

@@ -24,6 +24,7 @@ def create_map(data: pd.DataFrame) -> go.Figure:
     fig.update_layout(mapbox_style=os.environ['MAPBOX_STYLE'],
                       mapbox_accesstoken=os.environ['MAPBOX_TOKEN'])
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+    fig.update_layout(height=650)
     fig['layout']['uirevision'] = 'userpref'
 
     return fig
