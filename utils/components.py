@@ -1,4 +1,4 @@
-import string
+import collections
 
 from dash import html, dcc
 
@@ -29,11 +29,9 @@ def get_dropdown_div(id: str = 'dropdown-div', className: str = 'right cell'):
 
 
 def get_selector_div(id: str = 'selector-div', className: str = 'right cell'):
-    attack_types = pirate_attacks.attack_type.unique()
-    attack_types = [at for at in attack_types if type(at) is str]
-
-    # vessel_types = pirate_attacks.vessel_type.unique()
-    # vessel_status = pirate_attacks.vessel_status.unique()
+    dist = collections.Counter(pirate_attacks.attack_type)
+    dist = sorted(dist.items(), key=lambda x: x[1], reverse=True)  # Sort by count
+    attack_types = [x for x, y in dist if str(x) != 'nan']  # Exclude nan types
 
     entries = [{"label": html.Span(id=f'{at}_selector_span',
                                    children=at,
