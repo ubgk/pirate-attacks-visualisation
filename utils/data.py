@@ -1,3 +1,5 @@
+import string
+
 import numpy as np
 import pandas as pd
 
@@ -8,6 +10,12 @@ pirate_attacks['date_year'] = pirate_attacks.date.apply(lambda x: int(x.split('-
 
 c_map = map_colors(pirate_attacks.attack_type.unique(), COLOR_LIST)
 pirate_attacks['color'] = pirate_attacks.attack_type.apply(str).map(c_map)
+
+
+def format_colname(plot_type):
+    plot_type = plot_type.replace("_", " ")
+    plot_type = string.capwords(plot_type)
+    return plot_type.replace('Eez', 'EEZ')
 
 
 def filter_data(range: list = None,

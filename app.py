@@ -7,7 +7,7 @@ import utils.data
 import visualizations.geo
 import visualizations.hist
 import visualizations.root
-from utils.data import pirate_attacks
+from utils.data import pirate_attacks, format_colname
 
 external_stylesheets = [
     'https://codepen.io/chriddyp/pen/bWLwgP.css',
@@ -35,9 +35,7 @@ def update_visualization(slider, attack_types, plot_type):
         visualizations.geo.update_map(visualizations.geo.map, data)
         bar = visualizations.hist.create_bar(data, col=plot_type)
 
-        plot_type = string.capwords(plot_type.replace("_", " ")).replace('Eez', 'EEZ')
-
-    return visualizations.geo.map, bar, plot_type
+    return visualizations.geo.map, bar, format_colname(plot_type)
 
 
 if __name__ == '__main__':

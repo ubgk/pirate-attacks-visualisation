@@ -2,7 +2,7 @@ import string
 
 from dash import html, dcc
 
-from utils.data import pirate_attacks, c_map
+from utils.data import pirate_attacks, c_map, format_colname
 
 
 def get_dropdown_div(id: str = 'dropdown-div', className: str = 'right cell'):
@@ -15,7 +15,7 @@ def get_dropdown_div(id: str = 'dropdown-div', className: str = 'right cell'):
     plot_types = ['attack_type', 'nearest_country', 'eez_country',
                   'vessel_type', 'vessel_status', 'data_source']
 
-    entries = [{"label": string.capwords(pt.replace('_', ' ')).replace('Eez', 'EEZ'),
+    entries = [{"label": format_colname(pt),
                 "value": pt} for pt in plot_types]
 
     div = html.Div(id=id,
