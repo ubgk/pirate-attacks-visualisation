@@ -8,24 +8,27 @@ from utils.colors import map_colors, COLOR_LIST
 
 pirate_attacks = pd.read_csv("data/pirate_attacks.csv")
 
+# Add ID
+pirate_attacks['reference_id'] = pirate_attacks.index.values
+
 # Filter points on land
 pirate_attacks["is_ocean"] = pirate_attacks.apply(lambda row: globe.is_ocean(row.latitude, row.longitude), axis=1)
-pirate_attacks = pirate_attacks[pirate_attacks["is_ocean"]]
+pirate_attacks = pirate_attacks[pirate_attacks["is_ocean"]].copy()
 
 # Year
 pirate_attacks['date_year'] = pirate_attacks.date.apply(lambda x: int(x.split('-')[0]))
 
 # Attack Type "Boarding" -> "Boarded"
 pirate_attacks['attack_type'] = pirate_attacks['attack_type'].apply(
-    lambda at: 'Boarded' if at == 'Boarding' else str(at))
+    lambda at: 'Boarded' if at == 'Boarding' else str(at)).copy()
 
 # Map attack types to colors
 c_map = map_colors(pirate_attacks.attack_type.unique(), COLOR_LIST)
-pirate_attacks['color'] = pirate_attacks.attack_type.apply(str).map(c_map)
+pirate_attacks['color'] = pirate_attacks.attack_type.apply(str).map(c_map).copy()
 
 # Vessel Status "steaming" -> "Steaming"
 pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
-    lambda vs: 'Steaming' if vs == 'steaming' else str(vs))
+    lambda vs: 'Steaming' if vs == 'steaming' else str(vs)).copy()
 
 
 def break_lines(s: str, max_len: int = 30) -> str:
@@ -68,7 +71,9 @@ def get_custom_data(data: pd.DataFrame):
     attack_desc = remove_nans(data['attack_description'])
     attack_desc = attack_desc.apply(break_lines)
 
-    custom_data = np.stack([vessel_names, loc_desc, attack_desc], axis=-1)
+    ref_id = data['reference_id']
+
+    custom_data = np.stack([vessel_names, loc_desc, attack_desc, ref_id], axis=-1)
     return custom_data
 
 
@@ -80,6 +85,7 @@ def format_colname(plot_type):
 
 def filter_data(range: list = None,
                 attack_types: list = None,
+                selected_data: dict = None,
                 df: pd.DataFrame = pirate_attacks):
     data_mask = np.ones(df.shape[0], dtype=bool)
 
@@ -89,6 +95,11 @@ def filter_data(range: list = None,
 
     if attack_types:
         data_mask = data_mask & (df.attack_type.apply(lambda at: at in attack_types))
+
+    if selected_data:
+        ref_idx = [p['customdata'][-1] for p in selected_data['points']]
+
+        data_mask = data_mask & (df.reference_id.apply(lambda ref_id: ref_id in ref_idx))
 
     filtered_data = pirate_attacks[data_mask].copy()
 

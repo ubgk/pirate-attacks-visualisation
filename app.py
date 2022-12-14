@@ -21,8 +21,8 @@ server = app.server
 
 @app.callback(Output(component_id='map-graph', component_property='figure'),
               Input(component_id='range-slider', component_property='value'),
-              Input(component_id='attack-type-dropdown', component_property='value') )
-def update_visualization(slider, attack_types):
+              Input(component_id='attack-type-dropdown', component_property='value'))
+def update_map(slider, attack_types):
     data = pirate_attacks.copy()
 
     if slider or attack_types:
@@ -36,16 +36,16 @@ def update_visualization(slider, attack_types):
               Output(component_id='plot-name', component_property='children'),
               Input(component_id='range-slider', component_property='value'),
               Input(component_id='attack-type-dropdown', component_property='value'),
-              Input(component_id='plot-type-dropdown', component_property='value'), )
-def update_plot_selector(slider, attack_types, plot_type):
+              Input(component_id='plot-type-dropdown', component_property='value'),
+              Input(component_id='map-graph', component_property='selectedData'))
+def update_plot(slider, attack_types, plot_type, selected_data):
     data = pirate_attacks.copy()
 
-    if slider or attack_types or plot_type:
-        data = utils.data.filter_data(range=slider, attack_types=attack_types, df=data)
-        bar = visualizations.hist.create_bar(data, col=plot_type)
+    data = utils.data.filter_data(range=slider, attack_types=attack_types, selected_data=selected_data, df=data)
+    bar = visualizations.hist.create_bar(data, col=plot_type)
 
     return bar, format_colname(plot_type)
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)  # This seems to run settings.py once more.
+    app.run_server(debug=True)
