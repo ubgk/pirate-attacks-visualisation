@@ -90,4 +90,6 @@ def filter_data(range: list = None,
     if attack_types:
         data_mask = data_mask & (df.attack_type.apply(lambda at: at in attack_types))
 
-    return pirate_attacks[data_mask].copy()
+    filtered_data = pirate_attacks[data_mask].copy()
+
+    return filtered_data
