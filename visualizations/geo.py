@@ -2,7 +2,6 @@ import os
 
 import pandas as pd
 import plotly.graph_objects as go
-import numpy as np
 
 import utils.data
 
@@ -38,8 +37,12 @@ def update_map(fig: go.Figure, data: pd.DataFrame):
     scatter_trace = go.Scattermapbox(lat=data["latitude"],
                                      lon=data["longitude"],
                                      marker={'color': data['color']},
-                                     customdata=np.stack((data.get("vessel_name") if not None else "N/A", data.get("location_description") if not None else "N/A"), axis=-1),
-                                     hovertemplate = '<b>Lat: </b>%{lat}<br><b>Lon: </b>%{lon}<br><b>Name: </b>%{customdata[0]}<br><b>Location info: </b>%{customdata[1]}<br>')
+                                     customdata=utils.data.get_custom_data(data),
+                                     hovertemplate='<b>Lat: </b>%{lat}<br>'
+                                                   '<b>Lon: </b>%{lon}<br><br>'
+                                                   '<b>Name: </b>%{customdata[0]}<br><br>'
+                                                   '<b>Location Description: </b><br>%{customdata[1]}<br><br>'''
+                                                   '<b>Attack Description: </b><br>%{customdata[2]}<br>')
 
     fig.add_trace(scatter_trace)
     fig['layout']['uirevision'] = 'userpref'
