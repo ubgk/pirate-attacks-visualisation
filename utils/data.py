@@ -15,13 +15,13 @@ pirate_attacks = pirate_attacks[pirate_attacks["is_ocean"]]
 # Year
 pirate_attacks['date_year'] = pirate_attacks.date.apply(lambda x: int(x.split('-')[0]))
 
-# Map attack types to colors
-c_map = map_colors(pirate_attacks.attack_type.unique(), COLOR_LIST)
-pirate_attacks['color'] = pirate_attacks.attack_type.apply(str).map(c_map)
-
 # Attack Type "Boarding" -> "Boarded"
 pirate_attacks['attack_type'] = pirate_attacks['attack_type'].apply(
     lambda at: 'Boarded' if at == 'Boarding' else str(at))
+
+# Map attack types to colors
+c_map = map_colors(pirate_attacks.attack_type.unique(), COLOR_LIST)
+pirate_attacks['color'] = pirate_attacks.attack_type.apply(str).map(c_map)
 
 # Vessel Status "steaming" -> "Steaming"
 pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
