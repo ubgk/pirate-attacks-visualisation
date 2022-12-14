@@ -25,6 +25,7 @@ pirate_attacks['attack_type'] = pirate_attacks['attack_type'].apply(
 # Map attack types to colors
 c_map = map_colors(pirate_attacks.attack_type.unique(), COLOR_LIST)
 pirate_attacks['color'] = pirate_attacks.attack_type.apply(str).map(c_map).copy()
+pirate_attacks['shaded_color'] = pirate_attacks['color'].copy()
 
 # Vessel Status "steaming" -> "Steaming"
 pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
@@ -33,11 +34,7 @@ pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
 
 def break_lines(s: str, max_len: int = 30) -> str:
     # Split the string into words.
-    try:
-        words = s.split()
-
-    except Exception as e:
-        print('Words are:', s, type(s))
+    words = s.split()
 
     # Initialize the result string and the current line.
     result = ""
@@ -83,10 +80,10 @@ def format_colname(plot_type):
     return plot_type.replace('Eez', 'EEZ')
 
 
-def filter_data(range: list = None,
+def filter_data(df: pd.DataFrame,
+                range: list = None,
                 attack_types: list = None,
-                selected_data: dict = None,
-                df: pd.DataFrame = pirate_attacks):
+                selected_data: dict = None):
     data_mask = np.ones(df.shape[0], dtype=bool)
 
     if range:
@@ -98,9 +95,8 @@ def filter_data(range: list = None,
 
     if selected_data:
         ref_idx = [p['customdata'][-1] for p in selected_data['points']]
-
         data_mask = data_mask & (df.reference_id.apply(lambda ref_id: ref_id in ref_idx))
 
-    filtered_data = pirate_attacks[data_mask].copy()
+    filtered_data = df[data_mask].copy()
 
     return filtered_data

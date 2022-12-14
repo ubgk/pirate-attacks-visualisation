@@ -38,7 +38,7 @@ def update_map(fig: go.Figure, data: pd.DataFrame):
     # print(f"Number of traces: {len(fig.data)}")
     scatter_trace = go.Scattermapbox(lat=data["latitude"],
                                      lon=data["longitude"],
-                                     marker={'color': data['color']},
+                                     marker={'color': data['shaded_color']},
                                      customdata=utils.data.get_custom_data(data),
                                      hovertemplate='<b>Lat: </b>%{lat}<br>'
                                                    '<b>Lon: </b>%{lon}<br><br>'

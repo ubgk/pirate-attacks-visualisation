@@ -1,3 +1,5 @@
+import time
+
 import dash
 from dash import Output, Input
 
@@ -21,13 +23,20 @@ server = app.server
 
 @app.callback(Output(component_id='map-graph', component_property='figure'),
               Input(component_id='range-slider', component_property='value'),
-              Input(component_id='attack-type-dropdown', component_property='value'))
-def update_map(slider, attack_types):
+              Input(component_id='attack-type-dropdown', component_property='value'),
+              Input(component_id='map-graph', component_property='selectedData'))
+def update_map(slider, attack_types, selected_data):
     data = pirate_attacks.copy()
 
-    if slider or attack_types:
-        data = utils.data.filter_data(range=slider, attack_types=attack_types, df=data)
-        visualizations.geo.update_map(visualizations.geo.map, data)
+    if selected_data:
+        # start_time = time.time()
+        ref_idx = [p['customdata'][-1] for p in selected_data['points']]
+        data['gray_mask'] = data.reference_id.apply(lambda ref_id: ref_id not in ref_idx)
+        data.loc[data['gray_mask'], 'shaded_color'] = 'gray'
+        # print(f"Color updated in {time.time() - start_time}!")
+
+    data = utils.data.filter_data(df=data, range=slider, attack_types=attack_types)
+    visualizations.geo.update_map(visualizations.geo.map, data)
 
     return visualizations.geo.map
 
@@ -41,7 +50,7 @@ def update_map(slider, attack_types):
 def update_plot(slider, attack_types, plot_type, selected_data):
     data = pirate_attacks.copy()
 
-    data = utils.data.filter_data(range=slider, attack_types=attack_types, selected_data=selected_data, df=data)
+    data = utils.data.filter_data(df=data, range=slider, attack_types=attack_types, selected_data=selected_data)
     bar = visualizations.hist.create_bar(data, col=plot_type)
 
     return bar, format_colname(plot_type)
