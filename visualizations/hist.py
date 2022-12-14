@@ -64,15 +64,3 @@ def create_bar(data: pd.DataFrame, col: str = 'attack_type') -> go.Figure:
     fig.update_yaxes(range=[0, max(counts)])
 
     return fig
-
-# def update_bar(fig: go.Figure, data: pd.DataFrame):
-#     fig.data[-1].visible = False
-#
-#     hist_trace = go.Histogram(x=data['vessel_status'])
-#
-#     fig.add_trace(hist_trace)
-#
-#     fig['layout']['uirevision'] = 'userpref'
-#
-#
-# bar_fig = create_bar(utils.data.pirate_attacks)
