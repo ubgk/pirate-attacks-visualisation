@@ -59,8 +59,6 @@ def create_bar(data: pd.DataFrame, col: str = 'attack_type') -> go.Figure:
             xaxis={'tickfont': {'size': 16}}
         )
 
-    if col == 'vessel_type':
-        print("max_y:", max(counts))
     fig.update_yaxes(range=[0, max(counts)])
 
     return fig
