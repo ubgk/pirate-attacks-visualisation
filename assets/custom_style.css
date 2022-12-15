@@ -5,6 +5,11 @@
     --fourth:#ebf5ff;
     --fifth: #96dbfa; /* light default slider blue */
 }
+
+text {
+    font-family: Courier New, sans-serif !important;
+}
+
 body{
     background-color: var(--primary); /* Fully opaque */
     color: var(--third); /* All text is white by default, unless overridden! */
