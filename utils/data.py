@@ -31,6 +31,12 @@ pirate_attacks['shaded_color'] = pirate_attacks['color'].copy()
 pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
     lambda vs: 'Steaming' if vs == 'steaming' else str(vs)).copy()
 
+pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
+    lambda vs: 'Steaming' if vs == 'Underway' else str(vs)).copy()
+
+pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
+    lambda vs: 'Berthed' if vs == 'Moored' else str(vs)).copy()
+
 
 def break_lines(s: str, max_len: int = 30) -> str:
     # Split the string into words.
