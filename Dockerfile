@@ -28,4 +28,4 @@ ENV PORT=8000
 EXPOSE $PORT
 
 # Docker does not expand variables, so we need to tell it to not-bypass the Shell to evaluate $PORT
-CMD ["sh", "-c", "gunicorn --workers=1 --threads=4 --worker-class=gthread --bind=0.0.0.0:${PORT} app:server"]
+CMD ["sh", "-c", "gunicorn --workers=1 --threads=2 --worker-class=gthread --bind=0.0.0.0:${PORT} app:server"]
