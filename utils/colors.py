@@ -1,6 +1,6 @@
 import plotly
 
-COLOR_LIST = plotly.colors.qualitative.Light24[2:]
+COLOR_LIST = plotly.colors.qualitative.Light24
 
 
 # COLOR_LIST = ['#7af8ff'] + [COLOR_LIST[i] for i in [1, 4, 5, 6, 11, 15, 17, 18]]
