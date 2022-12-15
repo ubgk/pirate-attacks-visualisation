@@ -31,9 +31,11 @@ pirate_attacks['shaded_color'] = pirate_attacks['color'].copy()
 pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
     lambda vs: 'Steaming' if vs == 'steaming' else str(vs)).copy()
 
+# Vessel Status "Underway" -> "Steaming"
 pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
     lambda vs: 'Steaming' if vs == 'Underway' else str(vs)).copy()
 
+# Vessel Status "Moored" -> "Berthed"
 pirate_attacks['vessel_status'] = pirate_attacks['vessel_status'].apply(
     lambda vs: 'Berthed' if vs == 'Moored' else str(vs)).copy()
 
