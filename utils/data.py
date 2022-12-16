@@ -1,4 +1,5 @@
 import string
+from collections import Counter
 
 import numpy as np
 import pandas as pd
@@ -23,7 +24,8 @@ pirate_attacks['attack_type'] = pirate_attacks['attack_type'].apply(
     lambda at: 'Boarded' if at == 'Boarding' else str(at)).copy()
 
 # Map attack types to colors
-c_map = map_colors(pirate_attacks.attack_type.unique(), COLOR_LIST)
+colors = Counter(pirate_attacks.attack_type).keys()
+c_map = map_colors(colors, COLOR_LIST)
 pirate_attacks['color'] = pirate_attacks.attack_type.apply(str).map(c_map).copy()
 pirate_attacks['shaded_color'] = pirate_attacks['color'].copy()
 
