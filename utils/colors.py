@@ -2,6 +2,7 @@ import plotly
 
 COLOR_LIST = plotly.colors.qualitative.Light24
 
+COLOR_LIST = ['#0062FF', '#FF00D4', '#22FF00', '#FF0051', '#9000FF', '#72E0FF', '#F2FF00']
 
 # COLOR_LIST = ['#7af8ff'] + [COLOR_LIST[i] for i in [1, 4, 5, 6, 11, 15, 17, 18]]
 # COLOR_LIST = ["#4deeea", "#74ee15", "#ffe700", "#f000ff", "#001eff", "#ff005c", "#ffbf00", "#ffffff"]
