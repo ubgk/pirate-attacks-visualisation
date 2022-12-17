@@ -27,16 +27,11 @@ def fflt(val, pct=False):
 def get_html_rows(data):
     # {'country': 'OMN', 'year': 2011.0, 'corruption_index': 4.8, 'homicide_rate': 1.0457992398, 'GDP': 20921.1459820841, 'total_fisheries_per_ton': 158723.0, 'total_military': 47000.0, 'population': 3251108.0, 'unemployment_rate': 4.62400007247925, 'totalgr': 0.479336978549306, 'industryofgdp': 0.71565548226747, 'country_name': 'Oman'}
 
-    if data['GDP'] and data['population']:
-        gdp_per_capita = (data['GDP'] * 1_000_000) / data['population']
-        gdp_per_capita = fint(gdp_per_capita)
-    else:
-        gdp_per_capita = "N/A"
-
-    if not data["industryofgdp"] != data["industryofgdp"]:
-        industryofgdp = f'{(data["industryofgdp"] * 100):.2f}%'
-    else:
-        industryofgdp = 'N/A'
+    # if data['GDP'] and data['population']:
+    #     gdp_per_capita = (data['GDP'] * 1_000_000) / data['population']
+    #     gdp_per_capita = fint(gdp_per_capita)
+    # else:
+    #     gdp_per_capita = "N/A"
 
     data = [
         # ('Country', data['country_name']),
@@ -50,7 +45,7 @@ def get_html_rows(data):
         ('Homicide Rate', fflt(data["homicide_rate"])),
         ('Fishery Production (Tons)', fint(data['total_fisheries_per_ton'])),
         ('Total Military', fint(data['total_military'])),
-        ('Industry / GDP', industryofgdp)
+        ('Industry / GDP', fflt(data["industryofgdp"], pct=True))
     ]
 
     data = [html.Tr([html.Td(html.B(key)), html.Td(value)]) for key, value in data]
