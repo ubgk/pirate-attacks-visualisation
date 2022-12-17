@@ -80,7 +80,7 @@ def get_footer_div():
                       children=[
                           html.Div(id='country-div',
                                    className='footer left cell',
-                                   children=[html.H5(children='Country Indicators'),
+                                   children=[html.H5(children='Nearest Country Indicators'),
                                              html.Div(id='country-viz',
                                                       children=[
                                                           html.P(
