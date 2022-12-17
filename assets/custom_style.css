@@ -131,22 +131,39 @@ g.barlayer.mlayer g.trace.bars g.point path {
 }
 
 #country_flag {
-    width: 90%;
+    width: 100%;
 }
 
 #flag-container {
     padding-left: 30px;
-    padding-top: 20%;
     width: 500px;
-    vertical-align: middle;
-
+    margin: auto;
+    margin-left: 0;
+    margin-right: 50px;
 }
 
 #table-container {
-    padding: 20px;
+    padding-left: 50px;
 }
 
 #flag-legend {
     text-align: center;
     height: 30px;
+}
+
+#country-div {
+    padding: 30px;
+    max-width: 60%
+}
+
+h5 {
+    padding-bottom: 0;
+}
+
+p {
+    margin: 20px;
+}
+
+ol {
+    margin: 20px
 }

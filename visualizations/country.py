@@ -2,17 +2,23 @@ import functools
 
 import pycountry
 import requests
-from dash import html, dcc
+from dash import html
 
 from utils.data import country_indicators
 
-import plotly.graph_objects as go
 
 def fint(val):
     try:
         return f"{int(val):,}"
     except:
         return "N/A"
+
+
+def fflt(val):
+    if not val != val: # This is False for nan values
+        return f'{val:,.1f}'
+    else:
+        return 'N/A'
 
 
 def get_html_rows(data):
@@ -24,6 +30,11 @@ def get_html_rows(data):
     else:
         gdp_per_capita = "N/A"
 
+    if not data["industryofgdp"] != data["industryofgdp"]:
+        industryofgdp = f'{(data["industryofgdp"] * 100):.2f}%'
+    else:
+        industryofgdp = 'N/A'
+
     data = [
         ('Country', data['country_name']),
         ('ISO-3', data['country']),
@@ -31,12 +42,12 @@ def get_html_rows(data):
         ('Population', fint(data['population'])),
         ('GDP ($M)', fint(data['GDP'])),
         ('GDP per Capita ($)', gdp_per_capita),
-        ('Unemployment Rate', f'{data["unemployment_rate"]:.2f}'),
-        ('Corruption Index', f'{data["corruption_index"]:.1f}'),
-        ('Homicide Rate', f'{data["homicide_rate"]:.1f}'),
-        ('Total Fishery Production (Tons)', fint(data['total_fisheries_per_ton'])),
+        ('Unemployment Rate', fflt(data["unemployment_rate"])),
+        ('Corruption Index', fflt(data["corruption_index"])),
+        ('Homicide Rate', fflt(data["homicide_rate"])),
+        ('Fishery Production (Tons)', fint(data['total_fisheries_per_ton'])),
         ('Total Military', fint(data['total_military'])),
-        ('Industry / GDP', f'{(data["industryofgdp"] * 100):.2f} %')
+        ('Industry / GDP', industryofgdp)
     ]
 
     data = [html.Tr([html.Td(html.B(key)), html.Td(value)]) for key, value in data]

@@ -54,7 +54,7 @@ def get_header_div(id: str = 'header-div', className: str = 'row cell'):
                    children=[html.Header('Global Maritime Pirate Attacks'),
                              html.P(
                                  'This is an interactive visualisation of Global Maritime Pirate Attacks'
-                                 ' between 1993 and 2020')]
+                                 ' between 1993 and 2020.')]
                    )
 
     return div
@@ -80,10 +80,11 @@ def get_footer_div():
                       children=[
                           html.Div(id='country-div',
                                    className='footer left cell',
-                                   children=[html.H5(children='Nearest Country'),
+                                   children=[html.H5(children='Country Indicators'),
                                              html.Div(id='country-viz',
                                                       children=[
-                                                         html.P('Click on a data point to display country information!')
+                                                          html.P(
+                                                              'Click on a data point to display country information!')
                                                       ]
                                                       )
 
@@ -93,7 +94,27 @@ def get_footer_div():
                           html.Div(id='info-div',
                                    className='footer right cell',
                                    children=[
-                                       html.H5(children='About', id='about')
+                                       html.H5(id='about-title', children='About'),
+                                       html.P(id='about-paragraph',
+                                              children='This interactive dashboard visualizes global maritime pirate '
+                                                       'attacks. It provides a valuable resource for individuals and '
+                                                       'organizations involved in global maritime trade and policy'
+                                                       ' making on international maritime security. '),
+
+                                       html.H5(children='References'),
+                                       html.P(id='about-references',
+                                              children=[
+                                                  html.Ol(children=[
+                                                      html.Li(children=[
+                                                          'Vagif (2021) Global maritime pirate attacks (1993–2020), Kaggle. Available at: ',
+                                                          html.A(
+                                                              href='https://www.kaggle.com/datasets/n0n5ense/global-maritime-pirate-attacks-19932020',
+                                                              children='https://www.kaggle.com/datasets/n0n5ense/global-maritime-pirate-attacks-19932020'),
+                                                          ' (Accessed: December 17, 2022).']),
+                                                      html.Li(
+                                                          'Benden, P., Feng, A., Howell, C. and Dalla Riva, G.V., 2021. Crime at Sea: A Global Database of Maritime Pirate Attacks (1993–2020). Journal of Open Humanities Data, 7, p.19. DOI.')
+                                                  ])
+                                              ])
                                    ]
                                    )
 
