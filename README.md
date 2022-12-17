@@ -6,6 +6,8 @@ The project was realized with `Plotly` and `Dash`.
 Please find the visualisation deployed at [https://piracy.herokuapp.com](https://piracy.herokuapp.com)
 
 ## About
+![image](assets/img.png)
+
 The app provides a simple and intuitive dashboard that allows users to visualize and interpret
  the data about global piracy attacks. It provides a valuable resource for users that wish
 to understand patterns and trends in global maritime security.
