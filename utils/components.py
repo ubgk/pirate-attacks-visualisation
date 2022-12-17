@@ -112,7 +112,10 @@ def get_footer_div():
                                                               children='https://www.kaggle.com/datasets/n0n5ense/global-maritime-pirate-attacks-19932020'),
                                                           ' (Accessed: December 17, 2022).']),
                                                       html.Li(
-                                                          'Benden, P., Feng, A., Howell, C. and Dalla Riva, G.V., 2021. Crime at Sea: A Global Database of Maritime Pirate Attacks (1993–2020). Journal of Open Humanities Data, 7, p.19. DOI.')
+                                                          'Benden, P., Feng, A., Howell, C. and Dalla Riva, G.V.,'
+                                                          ' 2021. Crime at Sea: A Global Database of Maritime Pirate '
+                                                          'Attacks (1993–2020). Journal of Open Humanities Data, 7, '
+                                                          'p.19. DOI.')
                                                   ])
                                               ])
                                    ]
