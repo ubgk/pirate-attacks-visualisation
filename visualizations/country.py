@@ -17,7 +17,7 @@ def fint(val):
 def fflt(val, pct=False):
     if not val != val: # This is False for nan values
         if pct:
-            return f'{val:,.1f}'
+            return f'{val:,.1f}%'
 
         return f'{val:,.1f}'
     else:
