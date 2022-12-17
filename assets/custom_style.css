@@ -136,7 +136,7 @@ g.barlayer.mlayer g.trace.bars g.point path {
 
 #flag-container {
     padding-left: 30px;
-    width: 500px;
+    width: 400px;
     margin: auto;
     margin-left: 0;
     margin-right: 50px;
@@ -154,7 +154,7 @@ g.barlayer.mlayer g.trace.bars g.point path {
 #country-div {
     padding: 30px;
     padding-top: 0px;
-    max-width: 60%
+    max-width: 50%
 }
 
 h5 {
