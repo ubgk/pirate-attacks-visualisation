@@ -14,8 +14,11 @@ def fint(val):
         return "N/A"
 
 
-def fflt(val):
+def fflt(val, pct=False):
     if not val != val: # This is False for nan values
+        if pct:
+            return f'{val:,.1f}'
+
         return f'{val:,.1f}'
     else:
         return 'N/A'
@@ -42,7 +45,7 @@ def get_html_rows(data):
         ('Population', fint(data['population'])),
         ('GDP ($M)', fint(data['GDP'])),
         # ('GDP per Capita ($)', gdp_per_capita),
-        ('Unemployment Rate', fflt(data["unemployment_rate"])),
+        ('Unemployment Rate', fflt(data["unemployment_rate"], pct=True)),
         ('Corruption Index', fflt(data["corruption_index"])),
         ('Homicide Rate', fflt(data["homicide_rate"])),
         ('Fishery Production (Tons)', fint(data['total_fisheries_per_ton'])),
