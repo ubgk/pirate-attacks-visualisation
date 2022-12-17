@@ -26,11 +26,12 @@ layout = html.Div(id='layout-div',
                                                 components.get_dropdown_div(),
                                                 html.Div(id='plot-cell',
                                                          className='right cell',
-                                                         children=[html.H5(children='Vessel Status', id='plot-name'),
+                                                         children=[html.H5(children='Plot Type', id='plot-name'),
                                                                    dcc.Graph(id='hist')])
                                             ]),
 
                                ]),
 
+                      components.get_footer_div()
                   ]
                   )

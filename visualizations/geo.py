@@ -43,6 +43,7 @@ def update_map(fig: go.Figure, data: pd.DataFrame):
                                      hovertemplate='<b>Lat: </b>%{lat}<br>'
                                                    '<b>Lon: </b>%{lon}<br><br>'
                                                    '<b>Name: </b>%{customdata[0]}<br><br>'
+                                                   '<b>Year: </b>%{customdata[4]}<br><br>'
                                                    '<b>Location Description </b><br>%{customdata[1]}<br><br>'''
                                                    '<b>Attack Description </b><br>%{customdata[2]}<br>')
 

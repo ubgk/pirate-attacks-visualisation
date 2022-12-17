@@ -72,3 +72,30 @@ def get_slider_div(id: str = 'slider-container', begin: int = 1993, end: int = 2
                    style={'margin-top': '10px'})
 
     return div
+
+
+def get_footer_div():
+    footer = html.Div(id='footer-div',
+                      className='row flexible',
+                      children=[
+                          html.Div(id='country-div',
+                                   className='footer left cell',
+                                   children=[html.H5(children='Nearest Country'),
+                                             html.Div(id='country-viz',
+                                                      children=[
+                                                         html.P('Click on a data point to display country information!')
+                                                      ]
+                                                      )
+
+                                             ]
+                                   ),
+
+                          html.Div(id='info-div',
+                                   className='footer right cell',
+                                   children=[
+                                       html.H5(children='About', id='about')
+                                   ]
+                                   )
+
+                      ])
+    return footer

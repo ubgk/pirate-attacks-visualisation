@@ -7,6 +7,12 @@ from global_land_mask import globe
 
 from utils.colors import map_colors, COLOR_LIST
 
+country_indicators = pd.read_csv("data/country_indicators.csv")
+
+# country_indicators.year = country_indicators.year.apply(lambda x: int(x) if x else 'N/A')
+# country_indicators.population = country_indicators.population.apply(lambda x: int(x) if x else 'N/A')
+# country_indicators.population = country_indicators.population.apply(lambda x: int(x) if x else 'N/A')
+
 pirate_attacks = pd.read_csv("data/pirate_attacks.csv")
 
 # Add ID
@@ -78,9 +84,12 @@ def get_custom_data(data: pd.DataFrame):
     attack_desc = remove_nans(data['attack_description'])
     attack_desc = attack_desc.apply(break_lines)
 
+    nearest_country = data['nearest_country']
+    year = data['date_year']
+
     ref_id = data['reference_id']
 
-    custom_data = np.stack([vessel_names, loc_desc, attack_desc, ref_id], axis=-1)
+    custom_data = np.stack([vessel_names, loc_desc, attack_desc, nearest_country, year, ref_id], axis=-1)
     return custom_data
 
 

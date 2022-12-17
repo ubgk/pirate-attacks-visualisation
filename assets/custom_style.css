@@ -66,6 +66,7 @@ h5 {
 .cell {
     background-color: var(--secondary); /* Land color */
     /*border-radius: 10px;*/
+    margin-bottom: 20px;
 }
 
 #dropdown-div, #selector-div{
@@ -110,4 +111,42 @@ g.barlayer.mlayer g.trace.bars g.point path {
 
 .Select-value-label {
     color: var(--third) !important;
+}
+
+#footer-div {
+    margin-top: -10px;
+}
+
+.footer.left.cell {
+    width: 80%;
+    margin-right: 20px;
+
+}
+.footer.right.cell {
+    flex: 1;
+}
+
+#country-viz {
+    display: flex;
+}
+
+#country_flag {
+    width: 90%;
+}
+
+#flag-container {
+    padding-left: 30px;
+    padding-top: 20%;
+    width: 500px;
+    vertical-align: middle;
+
+}
+
+#table-container {
+    padding: 20px;
+}
+
+#flag-legend {
+    text-align: center;
+    height: 30px;
 }

@@ -1,12 +1,13 @@
-import time
-
 import dash
 from dash import Output, Input
 
 import utils.data
+
+import visualizations.bar
+import visualizations.country
 import visualizations.geo
-import visualizations.hist
 import visualizations.root
+
 from utils.data import pirate_attacks, format_colname
 
 external_stylesheets = [
@@ -51,9 +52,22 @@ def update_plot(slider, attack_types, plot_type, selected_data):
     data = pirate_attacks.copy()
 
     data = utils.data.filter_data(df=data, range=slider, attack_types=attack_types, selected_data=selected_data)
-    bar = visualizations.hist.create_bar(data, col=plot_type)
+    bar = visualizations.bar.create_bar(data, col=plot_type)
 
     return bar, format_colname(plot_type)
+
+
+@app.callback(Output(component_id='country-viz', component_property='children'),
+              Input(component_id='map-graph', component_property='clickData'))
+def update_plot(clicked_data):
+    if clicked_data:
+        customdata = clicked_data['points'][0]['customdata']
+        country_code = customdata[3]
+        year = customdata[4]
+
+        return visualizations.country.get_viz(country_code, year)
+    else:
+        raise dash.exceptions.PreventUpdate
 
 
 if __name__ == '__main__':
