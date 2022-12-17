@@ -99,8 +99,9 @@ def get_footer_div():
                                               children='This interactive dashboard visualizes global maritime pirate '
                                                        'attacks. It provides a valuable resource for individuals and '
                                                        'organizations involved in global maritime trade and policy'
-                                                       ' making on international maritime security. <br>'
-                                                       'Developed as the final project for the INF552 Data Visualization course at L\'École Polytechnique. '),
+                                                       ' making on international maritime security.'),
+                                       html.P(
+                                           children='Dashboard developed as the final project for the INF552 Data Visualization course at L\'École Polytechnique. '),
 
                                        html.H5(children='References'),
                                        html.P(id='about-references',
