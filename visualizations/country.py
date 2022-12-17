@@ -76,16 +76,18 @@ def get_viz(country_code: str, year: int):
 
 @functools.lru_cache
 def get_flag(country_code, year):
-    url = f"https://restcountries.com/v2/alpha/{country_code}"
-    response = requests.get(url)
-
-    if response.status_code != 200:
-        return "FLAG"
-
-    response = response.json()
-    svg_url = response["flags"]["svg"]
+    # url = f"https://restcountries.com/v2/alpha/{country_code}"
+    # response = requests.get(url)
+    #
+    # if response.status_code != 200:
+    #     return "FLAG"
+    #
+    # response = response.json()
+    # svg_url = response["flags"]["svg"]
 
     country = pycountry.countries.get(alpha_3=country_code)
+    svg_url = f'https://flagcdn.com/{country.alpha_2.lower()}.svg'
+
     elem = html.Div(id='flag-container',
                     children=[html.Img(id='country_flag', src=svg_url),
                               html.H6(id='flag-legend', children=f'{country.name}, {year}')])
