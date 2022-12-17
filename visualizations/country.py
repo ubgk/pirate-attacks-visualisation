@@ -36,12 +36,12 @@ def get_html_rows(data):
         industryofgdp = 'N/A'
 
     data = [
-        ('Country', data['country_name']),
-        ('ISO-3', data['country']),
-        ('Year', int(data['year'])),
+        # ('Country', data['country_name']),
+        ('ISO', data['country']),
+        # ('Year', int(data['year'])),
         ('Population', fint(data['population'])),
         ('GDP ($M)', fint(data['GDP'])),
-        ('GDP per Capita ($)', gdp_per_capita),
+        # ('GDP per Capita ($)', gdp_per_capita),
         ('Unemployment Rate', fflt(data["unemployment_rate"])),
         ('Corruption Index', fflt(data["corruption_index"])),
         ('Homicide Rate', fflt(data["homicide_rate"])),
@@ -68,14 +68,14 @@ def get_table(country_code: str, year: int):
 
 
 def get_viz(country_code: str, year: int):
-    flag = get_flag(country_code)
+    flag = get_flag(country_code, year)
     table = get_table(country_code, year)
 
     return flag, table
 
 
 @functools.lru_cache
-def get_flag(country_code):
+def get_flag(country_code, year):
     url = f"https://restcountries.com/v2/alpha/{country_code}"
     response = requests.get(url)
 
@@ -88,6 +88,6 @@ def get_flag(country_code):
     country = pycountry.countries.get(alpha_3=country_code)
     elem = html.Div(id='flag-container',
                     children=[html.Img(id='country_flag', src=svg_url),
-                              html.H6(id='flag-legend', children=country.name)])
+                              html.H6(id='flag-legend', children=f'{country.name}, {year}')])
     return elem
     # return response
